@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "NSDT(e)",
+  "version": "1.0.0",
+  "action": { "default_popup": "index.html" },
+  "options_page": "src/options/index.html",
+  "permissions": ["activeTab"],
+  "background": {
+    "service_worker": "src/background.jsx"
+  },
+  "content_scripts": [
+    {
+      "js": ["./src/content_scripts/Mypage.jsx"],
+      "matches": ["https://nosdata.info/*"],
+      "include_globs": ["*nosdata.info/*/mypage.php*"]
+    },
+    {
+      "js": ["./src/content_scripts/LeveltableMake.jsx"],
+      "matches": ["https://nosdata.info/*"],
+      "include_globs": ["*nosdata.info/*/leveltable_make.php*"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "matches": ["https://nosdata.info/*"],
+      "resources": ["src/leveltable_inject.js"]
+    }
+  ]
+}
